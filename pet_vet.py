@@ -20,7 +20,7 @@ class Pets(Base):
     breed: Mapped[str] = mapped_column(String(20), nullable=False)
     age: Mapped[int] = mapped_column(Integer, nullable=False)
     
-    vets: Mapped[list['Vets']] = relationship('Vets', back_populates='pets')
+    # vets: Mapped[list['Vets']] = relationship('Vets', back_populates='pets')
     owner: Mapped['Owners'] = relationship('Owners', back_populates='pets')    
     appointments: Mapped[list['Appointments']] = relationship('Appointments', back_populates='pet')
     
@@ -41,13 +41,12 @@ class Vets(Base):
     __tablename__ = "vets"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    pet_id: Mapped[int] = mapped_column(Integer, ForeignKey("pets.id"))
     first_name: Mapped[str] = mapped_column(String(80), nullable=False)
     last_name: Mapped[str] = mapped_column(String(80), nullable=False)
     specialization: Mapped[str] = mapped_column(String(80), nullable=False)
     email: Mapped[str] = mapped_column(String(360), unique=True)
     
-    pets: Mapped[list['Pets']] = relationship('Pets', back_populates='vets')
+    # pets: Mapped[list['Pets']] = relationship('Pets', back_populates='vets')
     appointments: Mapped[list['Appointments']] = relationship('Appointments', back_populates='vet')
     
     
@@ -76,8 +75,8 @@ class Appointments(Base):
 # pet_5 = Pets(owner_id='2', name='Garfield', species='cat', breed='orange tabby', age='47')
 # pet_6 = Pets(owner_id='3', name='Charlotte', species='araneus cavaticus', breed='barn_spider', age='73')
 
-vet_1 = Vets(pet_id='2', first_name='Dr. Captain', last_name='Kangaroo', specialization='stuffed animals', email='capkangaroo@email.com')
-vet_2 = Vets(pet_id='1', first_name='Dr. Jan', last_name='Pol', specialization='large farm animals', email='jpol@email.com')
+vet_1 = Vets(first_name='Dr. Captain', last_name='Kangaroo', specialization='stuffed animals', email='capkangaroo@email.com')
+vet_2 = Vets(first_name='Dr. Jan', last_name='Pol', specialization='large farm animals', email='jpol@email.com')
 
 # session.add_all([owner_1, owner_2, owner_3])
 
