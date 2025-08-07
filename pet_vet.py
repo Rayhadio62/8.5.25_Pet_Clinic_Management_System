@@ -14,7 +14,7 @@ class Pets(Base):
     __tablename__ = "pets"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    owner_id: Mapped[int] = mapped_column(Integer, ForeignKey("owners.id"), nullable=True)
+    owner_id: Mapped[int] = mapped_column(Integer, ForeignKey("owners.id"))
     name: Mapped[str] = mapped_column(String(20), nullable=False)
     species: Mapped[str] = mapped_column(String(10), nullable=False)
     breed: Mapped[str] = mapped_column(String(20), nullable=False)
